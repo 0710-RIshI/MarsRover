@@ -1,10 +1,16 @@
 package main;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
+
+import java.util.ArrayList;
+
+
+
 
 // to-do
 // handle exceptions in isObstacle
 //handle exceptions in move
-// finish turn function
 
 
 class Rover {
@@ -17,8 +23,7 @@ class Rover {
 	final int max_x;
 	final int max_y;
 	
-	Vector<Pair<Integer, String>> obstacles = new Vector<>();
-	
+	ArrayList<int[]> obstacles = new ArrayList<>();
 	
 	public Rover(int cx,int cy,char direction, int max_x,int max_y){
 		this.cx = cx;
@@ -30,16 +35,30 @@ class Rover {
 	
 	boolean isObstacle(int x,int y) {
 		for(int i=0;i<this.obstacles.size();i++) {
-			if(x == obstacles[i].getLeft() && y == obstacles[i].getRight()) {
+			if(x == obstacles.get(i)[0] && y == obstacles.get(i)[1]) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	void turn(char command) {
+	char turn(char command) {
 		
-		// create a dictionary with key as directions and values as its corresponding left and right
+		Dictionary<Character, char[]> dict = new Hashtable<>();
+		dict.put('N', new char[]{'W', 'E'});
+        dict.put('W', new char[]{'S', 'N'});
+        dict.put('S', new char[]{'E', 'W'});
+        dict.put('E', new char[]{'N', 'S'});
+        
+        
+        if(command == 'L') {
+        	return dict.get(direction)[0];
+        }
+        else {
+        	return dict.get(direction)[1];
+        }
+		
+		
 	}
 	
 	public void move(char command) {
@@ -77,7 +96,7 @@ class Rover {
 		}
 		
 		else {
-			this.turn(command);
+			direction = this.turn(command);
 		}
 	}
 	
