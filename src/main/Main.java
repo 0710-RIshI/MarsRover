@@ -20,6 +20,7 @@ public class Main {
 
         // System.out.println("Height - " + height + "\nWidth - " + width);
         
+        
         grid.printGrid();
 
         //Inserting Obstacles
@@ -27,6 +28,8 @@ public class Main {
         List<Obstacle> obstacles = new ArrayList<>();
         
         int numberOfObstacles;
+        
+        //User validation for entering no of obstacles
         do {
         	System.out.print("Number of Obstacles (should not exceed maximum possible obstacles: " + (grid.getDim()[0] * grid.getDim()[1]) + ") - ");
         	numberOfObstacles = input.nextInt();
