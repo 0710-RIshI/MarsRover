@@ -8,12 +8,15 @@ public class Rover {
     private int y;
     private int obstacleCount;
     private Direction direction;
+    private MyGrid grid;
 
     Rover(int x, int y, Direction direction, MyGrid grid){
-        this.x = x;
-        this.y = y;
+        this.y = x;
+        int dim[] = grid.getDim();
+        this.x = dim[0]-1-y;
         this.obstacleCount = 0;
         this.direction = direction;
+        this.grid = grid;
 
         System.out.println("Starting Position: (" + x + ", " + y + ", " + direction + ")");
 
@@ -22,8 +25,6 @@ public class Rover {
 
     }
     
-    
-
     public int getX() {
 		return x;
 	}
@@ -73,8 +74,9 @@ public class Rover {
 
 
 	public void getStatusReport(){
+		int dim[] = this.grid.getDim();
         String obstaclePrint = (obstacleCount == 0) ? "No" : Integer.toString(obstacleCount);
-        System.out.println("Rover is at (" + x + ", " + y + ") facing " + direction + ". " + obstaclePrint + " Obstacles detected.");
+        System.out.println("Rover is at (" + y + ", " + (dim[0]-1-x) + ") facing " + direction + ". " + obstaclePrint + " Obstacles detected.");
     }
 
     //
@@ -83,6 +85,7 @@ public class Rover {
         List<Character> commands = cmd.getCommands();
         // System.out.println("Starting Direction - " + direction);
         for (Character command : commands) {
+        	System.out.println("command is " + command);
             switch (command) {
                 case 'M':
                     this.direction = new Move(this,grid).execute();
@@ -103,7 +106,8 @@ public class Rover {
             }
             // System.out.println("Current Direction - " + this.direction);
         }
-        System.out.println("Final Position: (" + x + ", " + y + ", " + this.direction + ")");
+        int dim[] = this.grid.getDim();
+        System.out.println("Final Position: (" + y + ", " + (dim[0]-1-x) + ", " + this.direction + ")");
 
     }
     

@@ -43,18 +43,19 @@ public class Main {
             int col;
             System.out.print("Column - ");
             col = input.nextInt();
-            Obstacle t = new Obstacle(new Pair(row,col), grid);
+            Obstacle t = new Obstacle(new Pair(height-1-col,row), grid);
             try{
             	t.isValid(t.getP().getRow(), t.getP().getCol());
             	obstacles.add(t);
             }catch(ArrayIndexOutOfBoundsException e){
             	System.out.println("Please Enter valid Obstacle location");
             	i--;
-            }
-//            
+            }          
         }
 
         grid.fillObstacles(obstacles);
+        
+//
 
         System.out.println("--------------- After adding Obstacles ---------------");
         grid.printGrid();

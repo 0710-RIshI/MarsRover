@@ -65,8 +65,9 @@ public class MyGrid implements Grid,Gridcomponent{
             return new int[]{x, y, access};
         }
         //Format of array generated - {rowCord, colCord, value at current index}
-        // System.out.println("Current Coordinates - (" + newX + ", " + newY + ", " + direction + ")");
+//        System.out.println("Current Coordinates - (" + newX + ", " + newY + ", " + direction + ")");
         return access == 1 ? new int[]{x, y, access} : new int[]{newX, newY, access};
+        
     }
 
 
@@ -74,7 +75,8 @@ public class MyGrid implements Grid,Gridcomponent{
     public void isValid(int x, int y) {
         try {
             //This is to check if that particular move is valid and if it isn't it will go to catch block
-            int access = grid[x][y];
+        	int[] dimensions = this.getDim();
+            int access = grid[dimensions[0]-1-y][x];
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new ArrayIndexOutOfBoundsException("Starting coordinates outside defined environment");
         }
