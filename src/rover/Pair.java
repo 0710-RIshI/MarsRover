@@ -1,4 +1,4 @@
-package main;
+package rover;
 
 public class Pair {
     private int row;

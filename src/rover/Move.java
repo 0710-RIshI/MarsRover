@@ -1,4 +1,4 @@
-package main;
+package rover;
 
 public class Move implements Instructions {
 	

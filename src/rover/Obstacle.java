@@ -1,4 +1,4 @@
-package main;
+package rover;
 
 public class Obstacle implements Gridcomponent {
 	private Pair p;

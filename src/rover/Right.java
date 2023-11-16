@@ -1,4 +1,4 @@
-package main;
+package rover;
 
 public class Right implements Instructions {
 	private Direction d;
