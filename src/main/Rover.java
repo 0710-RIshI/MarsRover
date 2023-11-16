@@ -21,33 +21,80 @@ public class Rover {
         grid.isValid(x, y);
 
     }
+    
+    
 
-    public void getStatusReport(){
+    public int getX() {
+		return x;
+	}
+
+
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+
+
+	public int getY() {
+		return y;
+	}
+
+
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+
+	public int getObstacleCount() {
+		return obstacleCount;
+	}
+
+
+
+	public void setObstacleCount(int obstacleCount) {
+		this.obstacleCount = obstacleCount;
+	}
+
+
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
+	}
+
+
+
+	public void getStatusReport(){
         String obstaclePrint = (obstacleCount == 0) ? "No" : Integer.toString(obstacleCount);
         System.out.println("Rover is at (" + x + ", " + y + ") facing " + direction + ". " + obstaclePrint + " Obstacles detected.");
     }
 
     //
 
-    public void executeRover(Command cmd, MyGrid grid){
+    public void executeRover(Command cmd, MyGrid grid) throws Exception{
         List<Character> commands = cmd.getCommands();
         // System.out.println("Starting Direction - " + direction);
         for (Character command : commands) {
             switch (command) {
                 case 'M':
-                    int[] move = grid.move(x, y, direction);
-                    x = (move[0] != x) ? move[0] : x;
-                    y = (move[1] != y) ? move[1] : y;
-                    obstacleCount = (move[2] == 1) ? obstacleCount + 1 : obstacleCount;
+                    this.direction = new Move(this,grid).execute();
                     break;
                 
                 //Only update current direction for Left and Right
                 case 'L':
-                    this.direction = direction.turnLeft(this.direction);
+                    this.direction = new Left(this.direction).execute();
                     break;
                 
                 case 'R':
-                    this.direction = direction.turnRight(this.direction);
+                    this.direction =  new Right(this.direction).execute();
                     
                     break;
 

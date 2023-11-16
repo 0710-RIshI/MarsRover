@@ -1,12 +1,19 @@
 package main;
 
+import java.io.IOException;
+
 public enum Direction {
     N,
     S, 
     W,
-    E;
+    E,
+    ERROR;
+	
+	public void wrongDirection() throws IOException{
+		throw new IOException("Specified Direction not permitted. (N, S, E, W only permitted)");
+	}
 
-    Direction turnRight(Direction currentDirection){
+    public Direction turnRight(Direction currentDirection) throws Exception{
         Direction newDirection = null;
         switch (currentDirection) {
             case N:
@@ -26,12 +33,12 @@ public enum Direction {
                 break;
         
             default:
-                break;
+                this.wrongDirection();
         }
         return newDirection;
     }
 
-    Direction turnLeft(Direction currentDirection){
+    public Direction turnLeft(Direction currentDirection) throws Exception{
         Direction newDirection = null;
         switch (currentDirection) {
             case N:
@@ -51,7 +58,7 @@ public enum Direction {
                 break;
         
             default:
-                break;
+                throw new Exception("Specified Direction not permitted. (N, S, E, W only permitted)");
         }
         return newDirection;
     }

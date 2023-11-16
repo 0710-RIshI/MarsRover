@@ -3,7 +3,7 @@ package main;
 import java.util.Arrays;
 import java.util.List;
 
-public class MyGrid implements Grid{
+public class MyGrid implements Grid,Gridcomponent{
 
     //x -> row
     //y -> column
@@ -12,8 +12,17 @@ public class MyGrid implements Grid{
     MyGrid(int height, int width){
         this.grid = new int[height][width];
     }
+    
+    public int[][] getGrid() {
+		return grid;
+	}
+    
+    public int[] getDim() {
+    	return new int[] {grid.length,grid[0].length};
+    }
 
-    @Override
+
+	@Override
     public void printGrid(){
         for (int i = 0; i < grid.length; i++) {
             System.out.println(Arrays.toString(grid[i]));
@@ -72,9 +81,9 @@ public class MyGrid implements Grid{
     }
 
     @Override
-    public void fillObstacles(List<Pair> obstacles){
-        for (Pair pair : obstacles) {
-            grid[pair.getRow()][pair.getCol()] = 1;
+    public void fillObstacles(List<Obstacle> obstacles){
+        for (Obstacle o : obstacles) {
+            grid[o.getP().getRow()][o.getP().getCol()] = 1;
         }
     }
     
