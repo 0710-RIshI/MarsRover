@@ -58,7 +58,7 @@ public enum Direction {
                 break;
         
             default:
-                throw new Exception("Specified Direction not permitted. (N, S, E, W only permitted)");
+                this.wrongDirection();
         }
         return newDirection;
     }

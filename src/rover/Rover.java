@@ -102,6 +102,7 @@ public class Rover {
                     break;
 
                 default:
+                	System.out.println("Wrong direction");
                     break;
             }
             // System.out.println("Current Direction - " + this.direction);

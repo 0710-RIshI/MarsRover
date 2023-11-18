@@ -96,6 +96,7 @@ public class Main {
 		                direction = Direction.E;
 		                break;
 		            default:
+		            	System.out.println("Error");
 		            	direction = Direction.ERROR;
 		            	direction.wrongDirection();
 		                break;
@@ -113,7 +114,7 @@ public class Main {
 //        
     
         
-        
+        	
         //Defining movements
         System.out.println("--------------- Entering Navigation Commands (R - Right, L - Left, M - Move in same direction) ---------------");
         List<Character> commands = new ArrayList<>();
@@ -125,11 +126,18 @@ public class Main {
         for (int i = 0; i < numberOfCommands; i++) {
             char command;
             System.out.print("Command - ");
+            
             command = input.next().toUpperCase().charAt(0);
+            if(command != 'M' && command !='L' && command != 'R') {
+            	System.out.println("Enter valid commands");
+            	i--;
+            	continue;
+            }
             commands.add(command);
         }
 
         Command cmd = new Command(commands);
+        
 
         // System.out.println("X - " + x + ", " + "Y - " + y);
 

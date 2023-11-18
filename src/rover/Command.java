@@ -14,4 +14,13 @@ public class Command {
         return this.commands;
     }
     
+    public boolean validateCommands(){
+    	for(Character command : this.commands) {
+    		if(command != 'N' && command != 'S' || command !='E' || command != 'W') {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
 }
