@@ -10,7 +10,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         int height;
         int width;
-        //Defining Rover Environment
+        //Defining Rover Environment variables
         System.out.println("--------------- Entering Environment Values (Grid Height and Width) ---------------");
         System.out.print("Height - ");
         height = input.nextInt();
